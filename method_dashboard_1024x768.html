@@ -1,0 +1,110 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>方法流程儀表板</title><script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script><style>
+:root{--paper:#fffaf0;--paper2:#f5ecd5;--ink:#2d2822;--muted:#6b5e52;--line:#3e352c;--teal:#4aa3a2;--yellow:#f3c969;--pink:#e76f82;--green:#80bd7a;--blue:#5ca7df}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;background:linear-gradient(rgba(74,163,162,.12) 1px,transparent 1px),var(--paper2);background-size:100% 30px}.wrap{max-width:1180px;margin:0 auto;padding:34px 28px 50px}header{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:20px}h1{margin:0 0 8px;font-size:38px;line-height:1.15;text-shadow:2px 2px 0 rgba(243,201,105,.48)}h2{margin:0 0 12px;font-size:25px}h3{margin:16px 0 10px;color:#2f7777;font-size:22px}p{color:var(--muted);line-height:1.58;font-size:17px}.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:#d9f0e2;color:#2f7777;border:2px solid var(--line);border-radius:8px 13px 7px 12px;box-shadow:3px 4px 0 rgba(62,53,44,.14);padding:12px 17px;font-size:18px;font-weight:900;line-height:1.34;white-space:nowrap}.flow button{border:2px solid var(--line);border-radius:8px 13px 7px 12px;box-shadow:3px 4px 0 rgba(62,53,44,.14);font-weight:900}.panel{background:rgba(255,250,240,.9);border:2px solid var(--line);border-radius:12px 18px 10px 16px;box-shadow:6px 7px 0 rgba(62,53,44,.13);padding:18px;margin-top:18px;scroll-margin-top:18px}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.nav{display:flex;gap:9px;flex-wrap:wrap;align-items:center;background:rgba(255,250,240,.92);border:2px solid var(--line);border-radius:12px 18px 10px 16px;box-shadow:5px 6px 0 rgba(62,53,44,.12);padding:12px;margin:18px 0}.nav a,.topLink{display:inline-block;text-decoration:none;color:#2f7777;background:#fffaf0;border:2px solid rgba(62,53,44,.45);border-radius:999px;padding:8px 12px;font-weight:900}.filterHint{color:#e76f82;font-weight:900;font-size:16px}.topLink{margin-top:14px;font-size:14px}.splitCards{display:grid;grid-template-columns:1fr 1fr;gap:18px}.innerCard{background:#fffaf0;border:2px dashed rgba(62,53,44,.5);border-radius:12px 18px 10px 16px;padding:15px}.innerCard h3{margin:0 0 10px;color:#2f7777;font-size:22px}.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:12px}.flow.compact{grid-template-columns:repeat(4,1fr)}.flow button{min-height:92px;background:#fffaf0;color:#2f7777;padding:14px;cursor:pointer;font:inherit;font-size:17px}.flow button.active{background:#fff4b8;color:#2d2822;transform:translateY(-2px)}.detail{border-left:7px solid var(--teal);padding:10px 0 10px 18px;margin-top:16px;background:linear-gradient(90deg,rgba(255,250,240,.86),rgba(255,250,240,0));border-radius:0 12px 12px 0}.detail b{color:#2f7777;font-size:21px}.relation{display:grid;gap:8px;align-content:center;margin-top:14px}.relation.horizontal{grid-template-columns:1fr 22px 1fr 22px 1fr 22px 1fr 22px 1fr;align-items:center}.relation div{background:#fffaf0;border:2px solid rgba(62,53,44,.55);border-radius:9px 14px 8px 13px;box-shadow:3px 4px 0 rgba(62,53,44,.09);padding:12px 14px;text-align:center;color:#2f7777;font-weight:900}.relation i{display:block;width:3px;height:14px;background:#e76f82;border-radius:999px;margin:auto}.relation.horizontal i{width:100%;height:3px;position:relative}.relation.horizontal i:after{content:"";position:absolute;right:-1px;top:-5px;border-left:10px solid #e76f82;border-top:6px solid transparent;border-bottom:6px solid transparent}.relation div:last-of-type{background:#fff4b8;color:#2d2822}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{background:#fffaf0;border:2px dashed rgba(62,53,44,.55);border-radius:12px 18px 10px 16px;padding:15px;min-height:150px}.card b{display:block;color:#2f7777;font-size:20px;margin-bottom:8px}.card span{display:block;color:var(--muted);font-size:16.5px;line-height:1.45}.methodGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.methodGrid.slim{grid-template-columns:1fr 1fr;margin-top:12px}.methodGrid div{background:#fffaf0;border:2px solid rgba(62,53,44,.5);border-radius:10px 16px 9px 14px;box-shadow:3px 4px 0 rgba(62,53,44,.09);padding:14px}.methodGrid b{display:block;color:#2f7777;font-size:20px;margin-bottom:6px}.methodGrid span{color:var(--muted);line-height:1.5}table{width:100%;border-collapse:separate;border-spacing:0;color:var(--muted);font-size:16.5px;line-height:1.42;overflow:hidden}th,td{border-right:1.5px dashed rgba(62,53,44,.28);border-bottom:1.5px dashed rgba(62,53,44,.28);padding:11px 12px;vertical-align:top}thead th{background:#d9f0e2;color:#2f7777;text-align:left}tbody td:first-child{color:#2f7777;font-weight:900;background:rgba(255,244,184,.35);width:34%}th:last-child,td:last-child{border-right:0}tr:last-child td{border-bottom:0}.note{background:#fff4b8;border:2px solid var(--line);border-radius:9px 14px 8px 13px;padding:12px 14px;margin-top:12px;color:#2d2822}.miCharts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}.chartCard{background:#fffaf0;border:2px dashed rgba(62,53,44,.5);border-radius:12px 18px 10px 16px;padding:12px}.chartCard h3{margin-top:0}.chart{height:360px}.fallbackChart{display:grid;gap:9px;align-content:end;height:320px;padding:8px}.fallbackRow{display:grid;grid-template-columns:46px 1fr 54px;gap:8px;align-items:center;position:relative}.fallbackRow label{color:#2f7777;font-weight:900}.fallbackTrack{height:22px;background:rgba(62,53,44,.08);border:2px solid rgba(62,53,44,.28);border-radius:999px;overflow:hidden}.fallbackFill{height:100%;background:#e76f82;border-radius:999px}.fallbackFill.ok{background:#80bd7a}.fallbackFill.fix{background:#5ca7df}.tooltip{display:none;position:absolute;left:72px;bottom:28px;z-index:5;background:#fffaf0;color:#2d2822;border:2px solid #3e352c;border-radius:8px;padding:8px 10px;box-shadow:3px 4px 0 rgba(62,53,44,.14);font-size:14px;min-width:220px}.fallbackRow:hover .tooltip{display:block}.miStats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.miStats div{background:#fffaf0;border:2px solid rgba(62,53,44,.45);border-radius:10px 16px 9px 14px;padding:12px;text-align:center}.miStats b{display:block;color:#2f7777;font-size:22px}footer{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}@media(max-width:900px){header,.grid,.splitCards,.miCharts{display:block}.flow,.flow.compact,.cards,.methodGrid,.methodGrid.slim,.relation.horizontal,.miStats{grid-template-columns:1fr}.btn{margin-top:12px;width:100%;white-space:normal;text-align:center}h1{font-size:30px}.relation.horizontal i{width:3px;height:14px}.relation.horizontal i:after{display:none}}
+
+/* 1024x768 projector variant: keep the original page intact, only tighten scale and density. */
+@media (min-width:801px){
+body.projector-1024{min-width:1024px;overflow-x:hidden;background-size:100% 30px;font-size:18px}
+body.projector-1024 .wrap{width:1024px;max-width:1024px;min-height:768px;padding:24px 26px 38px}
+body.projector-1024 header{gap:16px;margin-bottom:2px}
+body.projector-1024 h1{font-size:38px;line-height:1.14;margin-bottom:7px}
+body.projector-1024 header p{font-size:18px;line-height:1.48;margin:0}
+body.projector-1024 h2{font-size:26px;margin-bottom:11px}
+body.projector-1024 h3{font-size:21px;margin:11px 0 8px}
+body.projector-1024 p{line-height:1.54}
+body.projector-1024 button,body.projector-1024 select,body.projector-1024 input{padding:9px 12px;font-size:16px}body.projector-1024 .btn{padding:12px 17px;font-size:18px;line-height:1.34}
+body.projector-1024 .panel{padding:16px 18px;margin-top:15px;border-width:2px;box-shadow:5px 6px 0 rgba(62,53,44,.12)}
+body.projector-1024 .note{padding:12px 14px;margin-top:11px;font-size:18px;line-height:1.52}
+body.projector-1024 .controls{gap:8px;margin-bottom:10px}
+body.projector-1024 .chart{height:430px}
+body.projector-1024 .chart.small{height:300px}
+body.projector-1024 .matrixChart{height:470px}
+body.projector-1024 .tableWrap{max-height:390px}
+body.projector-1024 table{font-size:16.5px;line-height:1.42}
+body.projector-1024 th,body.projector-1024 td{padding:9px}
+body.projector-1024 .cards{gap:10px}
+body.projector-1024 .cards>div,body.projector-1024 .card{padding:13px;min-height:118px}
+body.projector-1024 .card b{font-size:20px;margin-bottom:7px}
+body.projector-1024 .card span{font-size:17px;line-height:1.46}
+body.projector-1024 .stats{gap:10px}
+body.projector-1024 .stats div{padding:12px}
+body.projector-1024 .stats b{font-size:32px}
+body.projector-1024 .kpiRow{gap:10px}
+body.projector-1024 .kpiRow div{padding:11px}
+body.projector-1024 .kpiRow b{font-size:18px}
+body.projector-1024 .kpiRow span{font-size:27px}
+body.projector-1024 .bigFormula{font-size:23px;padding:16px}
+body.projector-1024 .footer{margin-top:14px}
+body.projector-1024 .grid{gap:14px}
+body.projector-1024 .row{grid-template-columns:160px 1fr 52px}
+body.projector-1024 .heatRow{grid-template-columns:132px repeat(var(--n),42px)}
+body.projector-1024 .heatCell{min-height:36px;font-size:12.5px}
+body.projector-1024 .heatHead{font-size:12.5px;min-height:86px}
+body.projector-1024 .reviewCards{gap:12px}
+body.projector-1024 .reviewCard{padding:15px}
+body.projector-1024 .reviewCard b{font-size:22px}
+body.projector-1024 .reviewCard span{font-size:24px}
+body.projector-1024 .reviewTable{font-size:16px}
+body.projector-1024 .reviewTable th,body.projector-1024 .reviewTable td{padding:10px}
+body.projector-1024 .eraCards{gap:10px}
+body.projector-1024 .eraStory{font-size:17px;padding:13px 15px}
+body.projector-1024 .groupMeaning{gap:10px}
+body.projector-1024 .groupMeaning .meaningCard{padding:13px}
+body.projector-1024 .meaningCard em{font-size:25px}
+body.projector-1024 .meaningCard h3{font-size:20px;margin:8px 0 10px}
+body.projector-1024 .meaningRule{font-size:16px;margin-bottom:11px}
+body.projector-1024 .meaningCard b{font-size:16px;margin:12px 0 5px}
+body.projector-1024 .meaningCard p{font-size:16px;line-height:1.5}
+body.projector-1024 .periodCards .card b,body.projector-1024 .stageCards .card b{font-size:17px}
+body.projector-1024 .periodCards .card strong,body.projector-1024 .stageCards .card strong{font-size:21px;margin:6px 0}
+body.projector-1024 .periodCards .card span,body.projector-1024 .stageCards .card span{font-size:16.5px}
+body.projector-1024 .trendTags{gap:8px;margin-top:10px}
+body.projector-1024 .trendTags div,body.projector-1024 .caseLine{padding:10px 12px}
+body.projector-1024 .trendTags b{font-size:20px}
+body.projector-1024 .layerBox div{padding:12px}
+}
+</style></head><body class="projector-1024"><div class="wrap"><header id="top"><div><h1>方法流程儀表板</h1><p>呈現方法流程，及本研究所使用的平台、工具，本研究並非使用 LLM 自動分析資料，所用工具皆在雲端，能上網的電腦依本流程，皆可做出一樣的結果，保證了本研究的可重現性。</p></div><a class="btn" href="story_slides_1024x768.html#9">返回主簡報第 9 頁 →</a></header>
+<nav class="nav"><a href="#flow">流程與資料流</a><a href="#methods">識別方法</a><a href="#linking">八分法連結</a><a href="#rules">標註規則</a><a href="#judgment">方向判斷</a><a href="#risk">風險控制</a><a href="#tools">技術工具</a><span class="filterHint">← 點擊可直達</span></nav>
+<section id="flow" class="panel"><h2>流程與資料流</h2><div class="splitCards"><div class="innerCard"><h3>節點說明</h3><p>點選方法節點，查看第三章方法設計中的任務與判斷重點。</p><div class="flow compact"><button class="active" data-step="0">原則識別</button><button data-step="1">連結識別出的憲法原則</button><button data-step="2">合憲性方向判斷</button><button data-step="3">釋字一覽表</button></div><div id="stepDetail" class="detail"></div></div><div class="innerCard"><h3>資料流</h3><p>資料由釋字文本，經憲法原則識別、解釋文連結與理由書辨識，整合成憲法原則出現之釋字號一覽表。</p><div class="relation"><div>釋字文本</div><i></i><div>憲法原則識別</div><i></i><div>解釋文連結憲法原則</div><i></i><div>理由書辨識憲法原則</div><i></i><div>釋字一覽表</div></div></div></div><a class="topLink" href="#top">回到導覽列 ↑</a></section>
+<section id="methods" class="panel"><h2>識別嘗試的方法</h2><table><thead><tr><th>比較項目</th><th>規則式關鍵詞</th><th>FuzzyWuzzy</th><th>Sentence Transformers</th><th>BERT + Connected Components</th></tr></thead><tbody><tr><td>是否仰賴詞庫</td><td>是</td><td>是</td><td>是</td><td>否</td></tr><tr><td>可辨識未知表述</td><td>否</td><td>否</td><td>否</td><td>是</td></tr><tr><td>準確性</td><td>高，適合已知原則</td><td>低</td><td>中</td><td>中，取決於閾值與人工命名</td></tr><tr><td>彈性</td><td>低</td><td>極低</td><td>中，受限詞庫</td><td>高</td></tr><tr><td>計算成本</td><td>低</td><td>低</td><td>中</td><td>高</td></tr><tr><td>人工後處理</td><td>少量校核</td><td>高</td><td>高</td><td>中，需命名與整併</td></tr></tbody></table><div class="note">因此本研究採混合流程：先用規則式方法處理高確定性語句，再用 BERT 語義分群處理未知或變形表述，最後人工檢核。</div><a class="topLink" href="#top">回到導覽列 ↑</a></section>
+<section id="linking" class="panel"><h2>連結識別出的原則（八分法分群，人工介入）</h2><p>八分群用三個訊號組合判斷人工介入程度：是否含「原則」、是否含「憲法」、是否含核心詞。代碼如 111，依序代表三個訊號是否存在。</p><table><thead><tr><th>分群代碼</th><th>特徵組合</th><th>方法意義</th><th>人工介入重點</th></tr></thead><tbody><tr><td>111</td><td>原則＋憲法＋核心詞</td><td>形式訊號最完整</td><td>通常只需校核是否重複或名稱需標準化</td></tr><tr><td>101</td><td>原則＋無憲法＋核心詞</td><td>具原則與核心詞，但未明示憲法</td><td>確認是否仍屬憲法原則語境</td></tr><tr><td>011</td><td>無原則＋憲法＋核心詞</td><td>有憲法脈絡與核心詞，但未出現原則字樣</td><td>確認是否為原則表述或只是一般憲法敘述</td></tr><tr><td>001</td><td>無原則＋無憲法＋核心詞</td><td>僅有核心詞訊號</td><td>高度依賴語境，需人工判斷是否誤入</td></tr><tr><td>110</td><td>原則＋憲法＋無核心詞</td><td>形式上像原則，但缺核心詞</td><td>檢查是否為新型表述或抽象泛稱</td></tr><tr><td>100</td><td>原則＋無憲法＋無核心詞</td><td>只有原則字樣</td><td>排除非憲法領域或一般語意使用</td></tr><tr><td>010</td><td>無原則＋憲法＋無核心詞</td><td>只有憲法脈絡</td><td>多半需確認是否只是背景敘述</td></tr><tr><td>000</td><td>無原則＋無憲法＋無核心詞</td><td>形式訊號最弱</td><td>作為高風險檢查區，避免漏掉變形表述</td></tr></tbody></table><div class="note">第三章呈現分群規則與人工介入邏輯；完整修正數與比例另見第四章八分群細節頁。</div><a class="topLink" href="#top">回到導覽列 ↑</a></section>
+<section id="rules" class="panel"><h2>標註規則表</h2><div class="cards"><div class="card"><b>1 合憲</b><span>文本中可辨識出支持合憲或維持規範效力的判斷語境。</span></div><div class="card"><b>2 違憲</b><span>文本中可辨識出違憲、失效、牴觸憲法或要求修正的判斷語境。</span></div><div class="card"><b>0 不明確</b><span>語氣較弱、結論不清，或同時具有多重可能解讀時，不強行標記方向。</span></div><div class="card"><b>-1無判斷詞</b><span>僅出現原則或背景說明，但未進入合憲性判斷語境。</span></div></div><a class="topLink" href="#top">回到導覽列 ↑</a></section>
+<section id="judgment" class="panel"><h2>合憲性方向判斷</h2><p>0、1、2、-1 是資料表中的方向標記，用來區分原則語句是否進入判斷，以及判斷方向是否明確。</p><table><thead><tr><th>代碼</th><th>意義</th><th>判斷訊號</th><th>第三章定位</th></tr></thead><tbody><tr><td>1</td><td>合憲方向</td><td>尚無牴觸憲法、與憲法意旨尚無不符、仍屬立法形成範圍。</td><td>建立方向判斷規則</td></tr><tr><td>2</td><td>違憲方向</td><td>牴觸憲法、違反憲法原則、應失其效力、不予適用、限期修正。</td><td>建立方向判斷規則</td></tr><tr><td>0</td><td>不明確或不標方向</td><td>弱語氣、規範性陳述、疑問句、語意未完，或文字不足以判斷方向。</td><td>避免過度推論</td></tr><tr><td>-1</td><td>本句無可辨識判斷</td><td>只提到原則或背景敘述，但本句沒有判斷詞；必要時再看後句或人工覆核。</td><td>保留未判斷狀態</td></tr></tbody></table><div class="methodGrid slim"><div><b>後句助判</b><span>若本句為 -1，後句可能補出 2、1 或 0；以此保留文本脈絡。</span></div><div><b>人工修正</b><span>自動規則無法處理的少數句子，回到原文脈絡人工判斷。</span></div></div><div class="note">第三章只說明代碼規則與判斷流程；實際數量與比例放在第四章標註成果呈現。</div><a class="topLink" href="#top">回到導覽列 ↑</a></section>
+<section id="risk" class="panel"><h2>風險控制方式</h2><table><thead><tr><th>可能風險</th><th>控制方式</th></tr></thead><tbody><tr><td>關鍵詞誤判</td><td>白名單與人工覆核</td></tr><tr><td>同義詞分散</td><td>標準名稱歸一化</td></tr><tr><td>弱語氣誤標</td><td>設置不明確或無判斷詞</td></tr><tr><td>NLP 擷取雜訊</td><td>分群檢查與人工修正</td></tr><tr><td>主觀推論過多</td><td>僅依文本可辨識訊號標註</td></tr></tbody></table><div class="note">這個頁面從第三章方法設計提煉而來，只整理方法流程，不新增論文沒有的數字或事件。</div><a class="topLink" href="#top">回到導覽列 ↑</a></section>
+<section id="tools" class="panel"><h2>技術平台與實作工具</h2><div class="methodGrid"><div><b>Google Colab</b><span>雲端編程與運算環境；作為主要編程平台，用於執行本研究所有 Python 腳本。</span></div><div><b>Google 試算表</b><span>雲端資料管理與人工審查工具；儲存各階段成果，並作為人工檢視與驗證介面。</span></div><div><b>Python</b><span>主程式語言，具豐富函式庫生態；串接所有研究步驟，實現從資料讀取到分析的自動化。</span></div><div><b>pandas</b><span>資料處理與分析函式庫；核心工具，用於整理、篩選、合併所有結構化資料。</span></div><div><b>Matplotlib / Seaborn / Plotly</b><span>資料視覺化函式庫；用於第五章，將統計結果視覺化，呈現原則引用趨勢。</span></div><div><b>WordCloud</b><span>詞雲生成工具；作為視覺化補充，直觀呈現特定時期的常用詞彙。</span></div><div><b>sentence-transformers / transformers</b><span>句向量模型載入與語義比對工具；用於第二節原則資料集建構，處理未知表述之語義分群。</span></div><div><b>scipy.spatial.distance</b><span>科學計算函式庫，用於計算向量距離；與句向量模型搭配，計算文本間之語義相似度矩陣。</span></div><div><b>networkx</b><span>圖論與網路分析函式庫；依相似度矩陣建立圖結構，並以 connected_components 演算法完成語義分群。</span></div><div><b>gspread / google.auth</b><span>Google API 客戶端函式庫；實現 Python 腳本與 Google 試算表之間的資料讀寫。</span></div></div><div class="note">本研究並非使用 LLM 自動分析資料，而是以規則、NLP 輔助與人工覆核共同完成資料建置。</div><a class="topLink" href="#top">回到導覽列 ↑</a></section><footer><a class="btn" href="story_slides_1024x768.html#9">返回主簡報第 9 頁 →</a></footer></div><script>
+const steps=[
+ {title:"憲法原則識別",body:"以權威文獻建立憲法原則白名單，再透過關鍵詞、語法結構與 NLP 技術，擷取釋字文本中可能涉及憲法原則的語句，並進行標準名稱歸一。"},
+ {title:"連結識別出的憲法原則",body:"語句自動化擷取憲法原則後，依訊號強弱與語境特徵區分為8群；人工覆核集中處理容易誤判、漏判或連結不明的語句。"},
+ {title:"合憲性方向判斷",body:"在已識別的原則基礎上，觀察其是否進入合憲、違憲、不明確或無判斷詞的語境。標註依據以文本中可辨識的判斷語句為基礎。"},
+ {title:"釋字一覽表",body:"完成憲法原則識別、對應，整合出憲法原則出現之釋字號一覽表。"}
+];
+function renderStep(i){document.querySelectorAll("[data-step]").forEach((b,idx)=>b.classList.toggle("active",idx===i));document.getElementById("stepDetail").innerHTML=`<b>${steps[i].title}</b><p>${steps[i].body}</p>`}
+document.querySelectorAll("[data-step]").forEach((b,i)=>b.addEventListener("click",()=>renderStep(i)));renderStep(0);
+</script><script id="return-to-deck-script">
+(function(){
+  const params = new URLSearchParams(location.search);
+  const defaultBack = 'story_slides_1024x768.html#9';
+  const validBack = /^(slides|mobile|slides_4x3|slides_800x600|slides_1024x768|story_slides|story_slides_mobile|story_slides_800x600|story_slides_1024x768)\.html#(?:story-)?(?:slide-)?\d+$/;
+  let back = params.get('back') || defaultBack;
+  if (!validBack.test(back)) back = defaultBack;
+  const pageMatch = back.match(/#(?:slide-)?(\d+)$/);
+  const pageText = back === defaultBack ? '返回主簡報第 9 頁 →' : (pageMatch ? `返回第 ${pageMatch[1]} 頁 →` : '返回主簡報第 9 頁 →');
+  const deckFiles = /^(slides|mobile|slides_4x3|slides_800x600|slides_1024x768|story_slides|story_slides_mobile|story_slides_800x600|story_slides_1024x768)\.html/i;
+  const mainFiles = /^(index|slides|mobile|slides_4x3|slides_800x600|slides_1024x768|story_slides|story_slides_mobile|story_slides_800x600|story_slides_1024x768)\.html$/i;
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href') || '';
+    const text = a.textContent || '';
+    const file = (href.split(/[?#]/)[0].split('/').pop() || '');
+    if (deckFiles.test(file) || /返回主簡報|返回第|返回 slides\.html/i.test(text)) {
+      a.setAttribute('href', back);
+      if (/返回主簡報|返回第|返回 slides\.html/i.test(text)) a.textContent = pageText;
+      return;
+    }
+    if (/\.html$/i.test(file) && !mainFiles.test(file) && !/^(https?:|mailto:|tel:)/i.test(href)) {
+      const u = new URL(href, location.href);
+      u.searchParams.set('back', back);
+      a.setAttribute('href', u.pathname.split('/').pop() + u.search + u.hash);
+    }
+  });
+})();
+</script></body></html>

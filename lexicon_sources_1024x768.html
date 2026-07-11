@@ -1,0 +1,103 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>比對源與權威詞庫</title><style>
+:root{--paper:#fffaf0;--paper2:#f5ecd5;--ink:#2d2822;--muted:#6b5e52;--line:#3e352c;--teal:#4aa3a2;--yellow:#f3c969;--pink:#e76f82}*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;background:linear-gradient(rgba(74,163,162,.13) 1px,transparent 1px),var(--paper2);background-size:100% 30px}.wrap{max-width:1220px;margin:0 auto;padding:34px 28px 50px}header{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:18px}h1{margin:0 0 8px;font-size:38px}p{color:var(--muted);line-height:1.62}.btn{display:inline-block;text-decoration:none;background:#d9f0e2;color:#2f7777;border:2px solid var(--line);border-radius:8px 13px 7px 12px;box-shadow:3px 4px 0 rgba(62,53,44,.14);padding:10px 14px;font-weight:900;white-space:nowrap}.panel{background:rgba(255,250,240,.9);border:2px solid var(--line);border-radius:12px 18px 10px 16px;box-shadow:6px 7px 0 rgba(62,53,44,.13);padding:18px;margin-top:18px}.note{background:#fff4b8;border:2px solid var(--line);border-radius:9px 14px 8px 13px;padding:12px 14px;margin:12px 0;color:#2d2822}.sourceMap{display:grid;grid-template-columns:1fr 58px 1fr 58px 1fr;gap:0;align-items:center;margin-top:12px}.sourceBox{min-height:210px;background:#fffaf0;border:2px solid rgba(62,53,44,.55);border-radius:12px 18px 10px 16px;box-shadow:4px 5px 0 rgba(62,53,44,.1);padding:18px;display:flex;flex-direction:column;justify-content:center}.sourceBox:nth-child(3){background:#d9f0e2}.sourceBox:nth-child(5){background:#fff4b8}.sourceBox b{display:block;color:#2f7777;font-size:25px;margin-bottom:10px}.sourceBox span{color:var(--muted);font-size:17px;line-height:1.5}.arrow{height:4px;background:#e76f82;border-radius:999px;position:relative;margin:0 8px}.arrow:after{content:"";position:absolute;right:-1px;top:-6px;border-left:12px solid #e76f82;border-top:8px solid transparent;border-bottom:8px solid transparent}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{background:#fffaf0;border:2px dashed rgba(62,53,44,.48);border-radius:10px 16px 9px 15px;padding:14px}.card b{display:block;color:#2f7777;font-size:20px;margin-bottom:6px}.card span{color:var(--muted);line-height:1.45}.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.controls input,.controls select{border:2px solid var(--line);background:#fffaf0;border-radius:8px 13px 7px 12px;padding:10px 12px;font-size:16px}.tableWrap{max-height:560px;overflow:auto;border:2px solid rgba(62,53,44,.35);border-radius:10px;background:rgba(255,250,240,.7)}table{width:100%;border-collapse:separate;border-spacing:0;font-size:15px}th,td{padding:9px 11px;border-right:1.5px dashed rgba(62,53,44,.22);border-bottom:1.5px dashed rgba(62,53,44,.22);text-align:left;vertical-align:top}th{position:sticky;top:0;background:#d9f0e2;color:#2f7777;z-index:1}td{color:#5f544a}td:nth-child(1),td:nth-child(2){color:#2d2822;font-weight:800}.tag{display:inline-block;background:#fff4b8;border:1.5px solid rgba(62,53,44,.35);border-radius:999px;padding:3px 8px;color:#6b5e52;font-size:13px}.footer{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}@media(max-width:900px){.sourceMap{grid-template-columns:1fr}.arrow{height:28px;width:4px;margin:8px auto}.arrow:after{right:-6px;top:auto;bottom:-1px;border-top:12px solid #e76f82;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:0}.cards{grid-template-columns:1fr 1fr}header{display:block}.btn{margin-top:10px}}
+
+/* 1024x768 projector variant: keep the original page intact, only tighten scale and density. */
+@media (min-width:801px){
+body.projector-1024{min-width:1024px;overflow-x:hidden;background-size:100% 30px;font-size:18px}
+body.projector-1024 .wrap{width:1024px;max-width:1024px;min-height:768px;padding:24px 26px 38px}
+body.projector-1024 header{gap:16px;margin-bottom:2px}
+body.projector-1024 h1{font-size:38px;line-height:1.14;margin-bottom:7px}
+body.projector-1024 header p{font-size:18px;line-height:1.48;margin:0}
+body.projector-1024 h2{font-size:26px;margin-bottom:11px}
+body.projector-1024 h3{font-size:21px;margin:11px 0 8px}
+body.projector-1024 p{line-height:1.54}
+body.projector-1024 button,body.projector-1024 select,body.projector-1024 input{padding:9px 12px;font-size:16px}body.projector-1024 .btn{padding:12px 17px;font-size:18px;line-height:1.34}
+body.projector-1024 .panel{padding:16px 18px;margin-top:15px;border-width:2px;box-shadow:5px 6px 0 rgba(62,53,44,.12)}
+body.projector-1024 .note{padding:12px 14px;margin-top:11px;font-size:18px;line-height:1.52}
+body.projector-1024 .controls{gap:8px;margin-bottom:10px}
+body.projector-1024 .chart{height:430px}
+body.projector-1024 .chart.small{height:300px}
+body.projector-1024 .matrixChart{height:470px}
+body.projector-1024 .tableWrap{max-height:390px}
+body.projector-1024 table{font-size:16.5px;line-height:1.42}
+body.projector-1024 th,body.projector-1024 td{padding:9px}
+body.projector-1024 .cards{gap:10px}
+body.projector-1024 .cards>div,body.projector-1024 .card{padding:13px;min-height:118px}
+body.projector-1024 .card b{font-size:20px;margin-bottom:7px}
+body.projector-1024 .card span{font-size:17px;line-height:1.46}
+body.projector-1024 .stats{gap:10px}
+body.projector-1024 .stats div{padding:12px}
+body.projector-1024 .stats b{font-size:32px}
+body.projector-1024 .kpiRow{gap:10px}
+body.projector-1024 .kpiRow div{padding:11px}
+body.projector-1024 .kpiRow b{font-size:18px}
+body.projector-1024 .kpiRow span{font-size:27px}
+body.projector-1024 .bigFormula{font-size:23px;padding:16px}
+body.projector-1024 .footer{margin-top:14px}
+body.projector-1024 .grid{gap:14px}
+body.projector-1024 .row{grid-template-columns:160px 1fr 52px}
+body.projector-1024 .heatRow{grid-template-columns:132px repeat(var(--n),42px)}
+body.projector-1024 .heatCell{min-height:36px;font-size:12.5px}
+body.projector-1024 .heatHead{font-size:12.5px;min-height:86px}
+body.projector-1024 .reviewCards{gap:12px}
+body.projector-1024 .reviewCard{padding:15px}
+body.projector-1024 .reviewCard b{font-size:22px}
+body.projector-1024 .reviewCard span{font-size:24px}
+body.projector-1024 .reviewTable{font-size:16px}
+body.projector-1024 .reviewTable th,body.projector-1024 .reviewTable td{padding:10px}
+body.projector-1024 .eraCards{gap:10px}
+body.projector-1024 .eraStory{font-size:17px;padding:13px 15px}
+body.projector-1024 .groupMeaning{gap:10px}
+body.projector-1024 .groupMeaning .meaningCard{padding:13px}
+body.projector-1024 .meaningCard em{font-size:25px}
+body.projector-1024 .meaningCard h3{font-size:20px;margin:8px 0 10px}
+body.projector-1024 .meaningRule{font-size:16px;margin-bottom:11px}
+body.projector-1024 .meaningCard b{font-size:16px;margin:12px 0 5px}
+body.projector-1024 .meaningCard p{font-size:16px;line-height:1.5}
+body.projector-1024 .periodCards .card b,body.projector-1024 .stageCards .card b{font-size:17px}
+body.projector-1024 .periodCards .card strong,body.projector-1024 .stageCards .card strong{font-size:21px;margin:6px 0}
+body.projector-1024 .periodCards .card span,body.projector-1024 .stageCards .card span{font-size:16.5px}
+body.projector-1024 .trendTags{gap:8px;margin-top:10px}
+body.projector-1024 .trendTags div,body.projector-1024 .caseLine{padding:10px 12px}
+body.projector-1024 .trendTags b{font-size:20px}
+body.projector-1024 .layerBox div{padding:12px}
+}
+</style><style>.op{display:flex;align-items:center;justify-content:center;color:#e76f82;font-size:44px;font-weight:900;line-height:1;font-family:"Segoe Print","Comic Sans MS","Microsoft JhengHei",cursive}.op.plus::before{content:"+"}.op.equals::before{content:"="}.controls{display:none}.sourceRef{margin:0 0 12px;color:#6b5e52;font-size:15px;line-height:1.55}.sourceRef a{color:#2f7777;font-weight:900}.tag{font-weight:900}.tag.cat-basic{background:#fff4b8;color:#7b5d18}.tag.cat-democracy{background:#d9f0e2;color:#2f7777}.tag.cat-rulelaw{background:#e9e0ff;color:#66508f}.tag.cat-security{background:#ffdfe6;color:#9a4355}.whiteTree{margin-top:12px;background:rgba(255,250,240,.72);border:2px dashed rgba(62,53,44,.34);border-radius:14px 20px 12px 18px;padding:18px}.treeTitle{display:block;width:100%;text-align:center;background:#d9f0e2;color:#2f7777;border:2px solid var(--line);border-radius:12px 18px 10px 16px;padding:10px 14px;font-weight:900;box-shadow:3px 4px 0 rgba(62,53,44,.12)}.pillarGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}.pillar{position:relative;background:#fffaf0;border:2px solid rgba(62,53,44,.48);border-radius:12px 18px 10px 16px;box-shadow:4px 5px 0 rgba(62,53,44,.1);padding:14px}.pillar::before{content:"";position:absolute;top:-18px;left:50%;height:18px;border-left:2px solid rgba(62,53,44,.28)}.pillarName{font-size:20px;font-weight:900;color:#2f7777;margin-bottom:4px}.keyword{color:#6b5e52;font-size:14px;font-weight:900}.branch{margin-top:12px;padding-top:8px;border-top:2px dashed rgba(62,53,44,.24)}.branchTitle{font-weight:900;color:#2f7777;margin:7px 0}.treeNode{position:relative;margin:7px 0 0 12px;padding:7px 9px 7px 13px;border-left:4px solid #4aa3a2;background:rgba(255,250,240,.86);border-radius:6px 10px 6px 10px;color:#5f544a;font-weight:800}.treeNode::before{content:"";position:absolute;left:-14px;top:50%;width:14px;border-top:2px solid rgba(62,53,44,.28)}.nested{margin-left:14px;padding-left:10px;border-left:2px dashed rgba(231,111,130,.45)}.pillar.democracy .treeNode{border-left-color:#4aa3a2}.pillar.rulelaw .treeNode{border-left-color:#9b83d4}.pillar.rulelaw .nested .treeNode{border-left-color:#e76f82}.pillar.welfare{background:#fffaf0}@media(max-width:900px){.op{font-size:38px;margin:8px 0}.pillarGrid{grid-template-columns:1fr 1fr}}@media(max-width:640px){.pillarGrid{grid-template-columns:1fr}}</style></head><body class="projector-1024"><div class="wrap"><header><div><h1>比對源與權威詞庫</h1><p>羅列了具體的比對名單。文本若比對到與白名單相同，直接認定為憲法原則； 若比對到法律原則詞表，則必須有「憲法」前綴，才認定為憲法原則。</p></div><a class="btn" href="story_slides_1024x768.html#9">返回第 21 頁</a></header>
+<section class="panel"><h2>比對源如何進入規則式標記</h2><div class="note">白名單用來確認哪些憲法原則可納入；NAER 法律原則關鍵詞表補充可能表述。兩者經標準化概念整合後，作為規則式標記與人工覆核的基礎。</div><div class="sourceMap"><div class="sourceBox"><b>權威白名單</b><span>依吳庚、陳淳文（2023）《憲法理論與政府體制》第三章整理，回答「哪些憲法原則可納入」，重點在概念邊界。</span></div><i class="op plus" aria-label="加上"></i><div class="sourceBox"><b>NAER 詞庫擴充</b><span>整合國家教育研究院 6 份法律學名詞庫，篩選含「原則」詞條，補充法律原則表述與同義詞，重點在提高覆蓋率。</span></div><i class="op equals" aria-label="等於"></i><div class="sourceBox"><b>標準化標記基礎</b><span>將同義、異形或拆分詞彙回收到標準化概念，再比對釋字文本並經人工覆核，形成可回溯的憲法原則對應資料。</span></div></div></section>
+<section class="panel"><h2>附錄一　白名單</h2><p class="sourceRef">資料來源：《憲法理論與政府體制》第 61 頁之「憲法基本原則四大支柱」體系。</p><div class="whiteTree"><div class="treeTitle">憲法基本原則四大支柱</div><div class="pillarGrid"><div class="pillar basic"><div class="pillarName">共和國原則</div><div class="keyword">關鍵詞：共和國</div></div><div class="pillar democracy"><div class="pillarName">民主國原則</div><div class="keyword">關鍵詞：民主國</div><div class="branch"><div class="branchTitle">民主國原則之衍生原則</div><div class="treeNode">國民主權原則｜國民主權</div><div class="treeNode">多數決原則｜多數決</div><div class="treeNode">代議民主原則｜代議民主</div></div></div><div class="pillar rulelaw"><div class="pillarName">法治國原則</div><div class="keyword">關鍵詞：法治國</div><div class="branch"><div class="branchTitle">法治國原則之衍生原則</div><div class="treeNode">法律優越原則｜法律優越</div><div class="treeNode">規範位階原則｜規範位階</div><div class="treeNode">法律保留原則｜法律保留</div><div class="treeNode">明確性原則｜明確性</div><div class="nested"><div class="branchTitle">明確性原則之具體化原則</div><div class="treeNode">法律明確性原則｜法律明確、內容明確</div><div class="treeNode">法律授權明確原則｜授權明確、法律授權明確</div></div><div class="treeNode">法安定性原則｜法安定性</div><div class="nested"><div class="branchTitle">法安定性原則之衍生原則</div><div class="treeNode">法不溯及既往原則｜不溯及既往</div><div class="treeNode">信賴保護原則｜信賴保護</div></div></div></div><div class="pillar welfare"><div class="pillarName">民生福利國原則</div><div class="keyword">關鍵詞：民生福利國</div></div></div></div></section>
+<section class="panel"><h2>附錄二　NAER 法律原則關鍵詞表</h2><p class="sourceRef">資料來源：國家教育研究院（NAER）。取自：<a href="https://terms.naer.edu.tw/download/">https://terms.naer.edu.tw/download/</a> 法律學名詞相關檔案。</p><div class="tableWrap"><table id="naerTable"></table></div></section>
+<div class="footer"><a class="btn" href="story_slides_1024x768.html#9">返回第 21 頁 →</a><a class="btn" href="method_dashboard_1024x768.html">方法流程儀表板 →</a></div></div>
+<script>
+const whiteRows=[[1,"共和國原則","共和國","基本原則"],[2,"民主國原則","民主國","基本原則"],[3,"法治國原則","法治國","基本原則"],[4,"民生福利國原則","民生福利國","基本原則"],[5,"國民主權原則","國民主權","民主國原則之衍生原則"],[6,"多數決原則","多數決","民主國原則之衍生原則"],[7,"代議民主原則","代議民主","民主國原則之衍生原則"],[8,"法律優越原則","法律優越","法治國原則之衍生原則"],[9,"規範位階原則","規範位階","法治國原則之衍生原則"],[10,"法律保留原則","法律保留","法治國原則之衍生原則"],[11,"明確性原則","明確性","法治國原則之衍生原則"],[12,"法律明確性原則","法律明確、內容明確","明確性原則之具體化原則"],[13,"法律授權明確原則","授權明確、法律授權明確","明確性原則之具體化原則"],[14,"法安定性原則","法安定性","法治國原則之衍生原則"],[15,"法不溯及既往原則","不溯及既往","法安定性原則之衍生原則"],[16,"信賴保護原則","信賴保護","法安定性原則之衍生原則"]];
+const naerRows=[[1,"一般法律原則","一般法律","6250989;21324169"],[2,"不推回原則","不推回","17902990"],[3,"互惠原則","互惠","6250661"],[4,"公允及善良原則","公允及善良","6250970"],[5,"公平合理原則","公平合理","21323922"],[6,"公平原則","公平","6250969"],[7,"公示原則","公示","21325160"],[8,"公信原則","公信","21325158"],[9,"比例原則","比例","7196943"],[10,"世界法原則","世界法","21324786"],[11,"平等原則","平等","7196883;21324175"],[12,"民主；民主國原則","民主","7196854"],[13,"民主；民主國原則","民主國","7196854"],[14,"全要件原則","全要件","6250140"],[15,"自我負責原則","自我負責","21324835"],[16,"赤道原則","赤道","7196768"],[17,"依法行政原則","依法行政","21324171"],[18,"固有原則","固有","6250426"],[19,"性別平等教育原則","性別平等教育","7197166"],[20,"法律明確性原則","明確性","21324174"],[21,"法律明確性原則","法律明確性","7196939"],[22,"法律保留原則","法律保留","7196942;21324172"],[23,"法律優先原則","法律優先","21324173"],[24,"法律優位原則","法律優位","7196941"],[25,"物權行為無因性原則","物權行為無因性","21325007"],[26,"物權優先原則","物權優先","21325153"],[27,"保護原則","保護","21324787"],[28,"信賴保護原則","信賴保護","21324180"],[29,"客觀合理期待原則","客觀合理期待","6250547"],[30,"思想表達合併原則","思想表達合併","7197757"],[31,"個別化原則","個別化","17902989"],[32,"家庭團聚原則","家庭團聚","17902991"],[33,"消極屬人原則／消極屬人主義","消極屬人","21324785"],[34,"狹義比例原則／相當性原則","狹義比例","7196946;21324179"],[35,"狹義比例原則／相當性原則","相當性","7196946"],[36,"區分原則","區分","7196808"],[37,"國民待遇原則","國民待遇","6250535"],[38,"國際商務契約選法原則","國際商務契約選法","21324583"],[39,"深石原則","深石","6250268"],[40,"第一次銷售原則","第一次銷售","7197801"],[41,"處分權主義 / 處分權原則","處分權","21324988"],[42,"處罰法定原則","處罰法定","21324237"],[43,"連續日原則","連續日","6250630"],[44,"最小侵害原則／必要性原則","必要性","7196945;21324178"],[45,"最小侵害原則／必要性原則","最小侵害","7196945"],[46,"善鄰原則","善鄰","7196774"],[47,"場景原則","場景","7197758"],[48,"訴訟經濟原則","訴訟經濟","21324989"],[49,"越權 ； 越權原則","越權","6250832"],[50,"集中審理原則","集中審理","21324986"],[51,"損失填補原則 ； 損害填補原則","損失填補","6250629"],[52,"損失填補原則 ； 損害填補原則","損害填補","6250629"],[53,"經營判斷原則 ； 經營判斷法則 ； 商業判斷法則 ； 商業判斷原則","商業判斷","6250183"],[54,"經營判斷原則 ； 經營判斷法則 ； 商業判斷法則 ； 商業判斷原則","經營判斷","6250183"],[55,"罪刑法定原則／罪刑法定主義","罪刑法定","10645011"],[56,"罪責原則","罪責","10645058"],[57,"誠信原則","誠信","6250388"],[58,"誠實信用原則","誠實信用","21325086;21324181"],[59,"預警原則","預警","7196783"],[60,"對價平衡原則","對價平衡","6250627"],[61,"適當性原則","適當性","7196944;21324177"],[62,"積極屬人原則／積極屬人主義","積極屬人","21324784"],[63,"衡平居次原則","衡平居次","6250333"],[64,"關於國內流離失所之指導原則","關於國內流離失所之指導","17902859"],[65,"屬地原則","屬地","21324783"],[66,"辯論主義 / 提出原則","提出","21324987"],[67,"辯論主義 / 提出原則","辯論","21324987"],[68,"權利耗盡原則","權利耗盡","6250309"]];
+function renderTable(id,headers,rows){const table=document.getElementById(id);table.innerHTML="<thead><tr>"+headers.map(h=>`<th>${h}</th>`).join("")+"</tr></thead><tbody>"+rows.map(r=>"<tr>"+r.map(c=>`<td>${c}</td>`).join("")+"</tr>").join("")+"</tbody>";}
+renderTable("naerTable",["序號","標準化概念","關鍵詞","原始ID"],naerRows);
+</script><script id="return-to-deck-script">
+(function(){
+  const params = new URLSearchParams(location.search);
+  const defaultBack = 'story_slides_1024x768.html#9';
+  const validBack = /^(slides|mobile|slides_4x3|slides_800x600|slides_1024x768|story_slides|story_slides_mobile|story_slides_800x600|story_slides_1024x768)\.html#(?:story-)?(?:slide-)?\d+$/;
+  let back = params.get('back') || defaultBack;
+  if (!validBack.test(back)) back = defaultBack;
+  const pageMatch = back.match(/#(?:slide-)?(\d+)$/);
+  const pageText = back === defaultBack ? '返回主簡報第 9 頁 →' : (pageMatch ? `返回第 ${pageMatch[1]} 頁 →` : '返回主簡報第 9 頁 →');
+  const deckFiles = /^(slides|mobile|slides_4x3|slides_800x600|slides_1024x768|story_slides|story_slides_mobile|story_slides_800x600|story_slides_1024x768)\.html/i;
+  const mainFiles = /^(index|slides|mobile|slides_4x3|slides_800x600|slides_1024x768|story_slides|story_slides_mobile|story_slides_800x600|story_slides_1024x768)\.html$/i;
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href') || '';
+    const text = a.textContent || '';
+    const file = (href.split(/[?#]/)[0].split('/').pop() || '');
+    if (deckFiles.test(file) || /返回主簡報|返回第|返回 slides\.html/i.test(text)) {
+      a.setAttribute('href', back);
+      if (/返回主簡報|返回第|返回 slides\.html/i.test(text)) a.textContent = pageText;
+      return;
+    }
+    if (/\.html$/i.test(file) && !mainFiles.test(file) && !/^(https?:|mailto:|tel:)/i.test(href)) {
+      const u = new URL(href, location.href);
+      u.searchParams.set('back', back);
+      a.setAttribute('href', u.pathname.split('/').pop() + u.search + u.hash);
+    }
+  });
+})();
+</script></body></html>
+
