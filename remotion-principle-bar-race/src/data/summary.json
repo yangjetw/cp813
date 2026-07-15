@@ -1,0 +1,68 @@
+{
+  "minYear": 1949,
+  "maxYear": 2021,
+  "principleCount": 30,
+  "maxValue": 140,
+  "finalTop10": [
+    {
+      "name": "比例原則",
+      "value": 140,
+      "yearly": 10,
+      "rank": 1
+    },
+    {
+      "name": "平等原則",
+      "value": 112,
+      "yearly": 6,
+      "rank": 2
+    },
+    {
+      "name": "法律明確性原則",
+      "value": 64,
+      "yearly": 3,
+      "rank": 3
+    },
+    {
+      "name": "法律保留原則",
+      "value": 64,
+      "yearly": 1,
+      "rank": 4
+    },
+    {
+      "name": "最小侵害原則／必要性原則",
+      "value": 55,
+      "yearly": 1,
+      "rank": 5
+    },
+    {
+      "name": "租稅法律原則",
+      "value": 51,
+      "yearly": 0,
+      "rank": 6
+    },
+    {
+      "name": "法律授權明確原則",
+      "value": 45,
+      "yearly": 0,
+      "rank": 7
+    },
+    {
+      "name": "正當法律程序原則",
+      "value": 26,
+      "yearly": 2,
+      "rank": 8
+    },
+    {
+      "name": "信賴保護原則",
+      "value": 24,
+      "yearly": 1,
+      "rank": 9
+    },
+    {
+      "name": "法治國原則",
+      "value": 16,
+      "yearly": 1,
+      "rank": 10
+    }
+  ]
+}
