@@ -77,20 +77,22 @@ export const PrincipleBarRace = () => {
   const intro = spring({ frame, fps, config: { damping: 18, stiffness: 90 } });
 
   const names = current.items.map((item) => item.name);
-  const items = names.map((name) => {
-    const a = getItem(current, name);
-    const b = getItem(next, name);
-    const value = interpolate(local, [0, 1], [a.value, b.value]);
-    const rank = interpolate(local, [0, 1], [a.rank, b.rank]);
-    return {
-      name,
-      value,
-      displayValue: Math.round(value),
-      rank,
-      finalRank: b.rank,
-      yearly: b.yearly,
-    };
-  });
+  const items = names
+    .map((name) => {
+      const a = getItem(current, name);
+      const b = getItem(next, name);
+      const value = interpolate(local, [0, 1], [a.value, b.value]);
+      const rank = interpolate(local, [0, 1], [a.rank, b.rank]);
+      return {
+        name,
+        value,
+        displayValue: Math.round(value),
+        rank,
+        finalRank: b.rank,
+        yearly: b.yearly,
+      };
+    })
+    .filter((item) => item.value > 0.01);
 
   return (
     <AbsoluteFill
@@ -176,11 +178,11 @@ export const PrincipleBarRace = () => {
       </div>
 
       <div style={{ position: "absolute", left: 0, right: 0, top: 0 }}>
-        {items.map((item) => {
-          const rankForStyle = Math.round(item.rank);
+        {items.map((item, visibleIndex) => {
+          const rankForStyle = visibleIndex + 1;
           const isTop = rankForStyle <= 15;
           const height = rowHeight(rankForStyle);
-          const y = rowY(item.rank);
+          const y = rowY(rankForStyle);
           const width = maxValue > 0 ? interpolate(item.value, [0, maxValue], [0, barMaxWidth]) : 0;
           const opacity = isTop ? 1 : 0.48;
           const fontSize = isTop ? 22 : 13;
