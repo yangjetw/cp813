@@ -41,12 +41,39 @@ const chartLeft = 92;
 const nameWidth = 452;
 const barLeft = chartLeft + nameWidth;
 const barMaxWidth = 1040;
-const valueLeft = barLeft + barMaxWidth + 44;
+const valueLeft = barLeft + barMaxWidth + 36;
+
+const palette = [
+  "#2f7f82",
+  "#6c9f8b",
+  "#d8a748",
+  "#e06f83",
+  "#5d8db7",
+  "#8f7aa8",
+  "#b47c55",
+  "#6f8d57",
+  "#bf8f3e",
+  "#4f9a9b",
+  "#c77972",
+  "#7f7566",
+];
 
 const getItem = (frame: YearFrame, name: string) =>
   frame.items.find((item) => item.name === name) ?? { name, value: 0, rank: meta.principleCount, yearly: 0 };
 
 const smooth = (value: number) => Easing.inOut(Easing.cubic)(value);
+
+const hashName = (name: string) =>
+  [...name].reduce((total, char, index) => total + char.charCodeAt(0) * (index + 5), 0);
+
+const colorForName = (name: string) => palette[hashName(name) % palette.length];
+
+const positiveRankMap = (yearFrame: YearFrame) =>
+  new Map(
+    yearFrame.items
+      .filter((item) => item.value > 0)
+      .map((item, index) => [item.name, index + 1]),
+  );
 
 const rowY = (rank: number) => {
   const before = rank - 1;
@@ -74,15 +101,25 @@ export const PrincipleBarRace = () => {
   const next = data[upperIndex];
   const year = Math.round(interpolate(local, [0, 1], [current.year, next.year]));
   const maxValue = interpolate(local, [0, 1], [current.max, next.max]);
+  const yearAdded = next.items.reduce((total, item) => total + item.yearly, 0);
   const intro = spring({ frame, fps, config: { damping: 18, stiffness: 90 } });
 
-  const names = current.items.map((item) => item.name);
+  const currentRanks = positiveRankMap(current);
+  const nextRanks = positiveRankMap(next);
+  const names = [
+    ...new Set([
+      ...current.items.filter((item) => item.value > 0).map((item) => item.name),
+      ...next.items.filter((item) => item.value > 0).map((item) => item.name),
+    ]),
+  ];
   const items = names
     .map((name) => {
       const a = getItem(current, name);
       const b = getItem(next, name);
       const value = interpolate(local, [0, 1], [a.value, b.value]);
-      const rank = interpolate(local, [0, 1], [a.rank, b.rank]);
+      const startRank = currentRanks.get(name) ?? (nextRanks.get(name) ?? meta.principleCount) + 3;
+      const endRank = nextRanks.get(name) ?? currentRanks.get(name) ?? meta.principleCount;
+      const rank = interpolate(local, [0, 1], [startRank, endRank]);
       return {
         name,
         value,
@@ -90,9 +127,12 @@ export const PrincipleBarRace = () => {
         rank,
         finalRank: b.rank,
         yearly: b.yearly,
+        isEntering: !currentRanks.has(name) && nextRanks.has(name),
       };
     })
-    .filter((item) => item.value > 0.01);
+    .filter((item) => item.value > 0.01)
+    .sort((a, b) => a.rank - b.rank);
+  const totalNow = Math.round(items.reduce((total, item) => total + item.value, 0));
 
   return (
     <AbsoluteFill
@@ -163,10 +203,10 @@ export const PrincipleBarRace = () => {
       <div
         style={{
           position: "absolute",
-          right: 112,
-          top: 92,
+          right: 106,
+          top: 84,
           fontFamily: fontHand,
-          fontSize: 126,
+          fontSize: 118,
           color: colors.pink,
           opacity: 0.82,
           fontWeight: 900,
@@ -177,6 +217,33 @@ export const PrincipleBarRace = () => {
         {year}
       </div>
 
+      <div
+        style={{
+          position: "absolute",
+          right: 116,
+          top: 218,
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
+          color: colors.muted,
+          fontWeight: 900,
+          fontSize: 28,
+        }}
+      >
+        <span>總累積 {totalNow}</span>
+        <span
+          style={{
+            color: yearAdded > 0 ? colors.pink : "rgba(109,97,85,.42)",
+            fontFamily: fontHand,
+            fontSize: 34,
+            transform: `scale(${yearAdded > 0 ? 1 + Math.sin(local * Math.PI) * 0.18 : 1})`,
+            display: "inline-block",
+          }}
+        >
+          +{yearAdded}
+        </span>
+      </div>
+
       <div style={{ position: "absolute", left: 0, right: 0, top: 0 }}>
         {items.map((item, visibleIndex) => {
           const rankForStyle = visibleIndex + 1;
@@ -184,9 +251,20 @@ export const PrincipleBarRace = () => {
           const height = rowHeight(rankForStyle);
           const y = rowY(rankForStyle);
           const width = maxValue > 0 ? interpolate(item.value, [0, maxValue], [0, barMaxWidth]) : 0;
-          const opacity = isTop ? 1 : 0.48;
+          const appearProgress = item.isEntering ? local : 1;
+          const opacity = (isTop ? 1 : 0.46) * interpolate(appearProgress, [0, 1], [0, 1], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          });
           const fontSize = isTop ? 22 : 13;
           const rankSize = isTop ? 24 : 13;
+          const barColor = colorForName(item.name);
+          const plusScale = item.yearly > 0 ? 1 + Math.sin(local * Math.PI) * 0.24 : 1;
+          const laneRankDelta = item.rank - rankForStyle;
+          const runPush = interpolate(Math.abs(laneRankDelta), [0, 1.2], [0, 26], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          });
           return (
             <div
               key={item.name}
@@ -197,7 +275,8 @@ export const PrincipleBarRace = () => {
                 width: 1740,
                 height,
                 opacity,
-                transition: "none",
+                transform: `translateX(${(1 - appearProgress) * -58 + runPush}px)`,
+                zIndex: 100 - rankForStyle,
               }}
             >
               <div
@@ -206,7 +285,7 @@ export const PrincipleBarRace = () => {
                   left: 0,
                   width: 74,
                   top: -1,
-                  color: colors.teal,
+                  color: barColor,
                   fontFamily: fontHand,
                   fontWeight: 900,
                   fontSize: rankSize,
@@ -240,7 +319,7 @@ export const PrincipleBarRace = () => {
                   width: barMaxWidth,
                   height: 4,
                   borderRadius: 999,
-                  background: "rgba(64,56,47,.10)",
+                  background: "rgba(64,56,47,.095)",
                 }}
               />
               <div
@@ -251,7 +330,7 @@ export const PrincipleBarRace = () => {
                   width,
                   height,
                   borderRadius: 999,
-                  background: `linear-gradient(90deg, ${colors.tealLight}, ${colors.yellow})`,
+                  background: barColor,
                   boxShadow: isTop ? `4px 5px 0 ${colors.shadow}` : "none",
                 }}
               />
@@ -260,7 +339,7 @@ export const PrincipleBarRace = () => {
                   position: "absolute",
                   left: valueLeft - chartLeft,
                   top: -2,
-                  width: 120,
+                  width: 82,
                   textAlign: "right",
                   color: colors.muted,
                   fontFamily: fontHand,
@@ -270,6 +349,28 @@ export const PrincipleBarRace = () => {
                 }}
               >
                 {item.displayValue > 0 ? item.displayValue : ""}
+              </div>
+              <div
+                style={{
+                  position: "absolute",
+                  left: valueLeft - chartLeft + 96,
+                  top: isTop ? -5 : -3,
+                  minWidth: isTop ? 58 : 38,
+                  padding: isTop ? "1px 8px 3px" : "0 6px 1px",
+                  borderRadius: 999,
+                  border: `2px solid ${item.yearly > 0 ? barColor : "rgba(109,97,85,.22)"}`,
+                  background: item.yearly > 0 ? "rgba(255,250,240,.92)" : "rgba(255,250,240,.45)",
+                  color: item.yearly > 0 ? barColor : "rgba(109,97,85,.35)",
+                  fontFamily: fontHand,
+                  fontWeight: 900,
+                  fontSize: isTop ? 20 : 12,
+                  lineHeight: isTop ? "24px" : "16px",
+                  textAlign: "center",
+                  transform: `scale(${plusScale})`,
+                  transformOrigin: "left center",
+                }}
+              >
+                +{item.yearly}
               </div>
             </div>
           );
