@@ -70,6 +70,15 @@
     trackEvent("story_complete", { version: version });
   };
 
+  window.trackInteractiveOpen = function (interactive_id, interactive_name, source_slide, version) {
+    trackEvent("interactive_open", {
+      interactive_id: interactive_id,
+      interactive_name: interactive_name,
+      source_slide: source_slide,
+      version: version
+    });
+  };
+
   try {
     var queuedCalls = window.cp813AnalyticsQueue || [];
     window.cp813AnalyticsQueue = [];

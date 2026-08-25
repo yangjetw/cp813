@@ -104,4 +104,25 @@ renderStoryIntro();renderKpis();renderProportionalityStory();renderEqualityStory
     }
   });
 })();
+</script><script id="interactive-open-analytics">
+(function(){
+  const params = new URLSearchParams(location.search);
+  const defaultBack = 'story_slides_1024x768.html#9';
+  const validBack = /^(slides|mobile|slides_4x3|slides_800x600|slides_1024x768|story_slides|story_slides_mobile|story_slides_800x600|story_slides_1024x768)\.html#(?:story-)?(?:slide-)?\d+$/;
+  let back = params.get('back') || defaultBack;
+  if (!validBack.test(back)) back = defaultBack;
+  const slideMatch = back.match(/#(?:story-)?(?:slide-)?(\d+)$/);
+  const sourceSlide = slideMatch ? Number(slideMatch[1]) : null;
+  const deckFile = back.split('#')[0].toLowerCase();
+  let version = 'backup';
+  if (/_1024x768\.html$/.test(deckFile)) version = '1024';
+  else if (/(?:^|_)mobile\.html$/.test(deckFile)) version = 'mobile';
+  else if (/_800x600\.html$/.test(deckFile)) version = '800';
+  const method = 'trackInteractiveOpen';
+  const args = ['legal_reservation_dashboard', '法律保留原則變遷分析', sourceSlide, version];
+  try {
+    if (typeof window[method] === 'function') window[method](...args);
+    else (window.cp813AnalyticsQueue = window.cp813AnalyticsQueue || []).push([method, args]);
+  } catch (_) {}
+})();
 </script></body></html>
