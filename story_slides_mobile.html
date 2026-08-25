@@ -906,6 +906,11 @@ body.story-mobile-read .closing-meta{font-size:clamp(18px,5vw,22px);line-height:
 </section></main>
 <script>
 const slides=[...document.querySelectorAll('.storySlide')],progress=document.getElementById('progress'),pageInfo=document.getElementById('pageInfo');let current=1;
+const storyVersion='mobile';
+const storySlideNames=['憲法原則變遷之實證研究','違反憲法原則？','大法官詮釋憲法、審查法令的紀錄','大法官基於憲法審查案件','為什麼選擇釋字文本？','依 5W 框架','研究範圍與限制','近數十年來，少有較全面性的觀點探討憲法解釋','簡報地圖','從文本到資料表','先把長篇釋字拆成分析單位','如何識別憲法原則？','再觀察憲法原則是否參與合憲性判斷','識別，不等於標註','資料處理規模','可查找、可統計、可對照','連結憲法原則','合憲性方向標註成果','資料不是黑箱','大法官援引憲法原則逐漸常態化','少數高頻，多數低頻','早出現，不等於後來最常用','比例原則是共現的樞紐','關鍵憲法原則的篩選方式','PI = （ΣA-ΣB）/（ΣA+ΣB）∈[-1,1]','引用篇數 × PI 值，整理五種使用型態','憲法原則不是在真空中變化','憲法原則從零星援引，走向常態化與多原則並用','三項關鍵原則，各自處理不同問題','五個問題，五個答案','本研究帶來什麼？','NLP 只是工具','被質疑，也被相信','透過 NLP 拆解，鳥瞰 813 篇釋字'];
+let entryVersionTracked=false;
+function sendStoryAnalytics(method,args){try{if(typeof window[method]==='function'){window[method](...args)}else{(window.cp813AnalyticsQueue=window.cp813AnalyticsQueue||[]).push([method,args])}}catch(_){}}
+function trackStoryState(previous,navigationMethod){try{if(!entryVersionTracked){entryVersionTracked=true;sendStoryAnalytics('trackEntryVersion',[storyVersion,document.referrer||'direct'])}sendStoryAnalytics('trackSlideView',[current,storySlideNames[current-1],storyVersion]);if(previous!==current){sendStoryAnalytics('trackSlideNavigation',[previous,current,current>previous?'forward':'backward',navigationMethod||'direct',storyVersion])}if(current===34&&sessionStorage.getItem('cp813_story_complete')!=='1'){sessionStorage.setItem('cp813_story_complete','1');sendStoryAnalytics('trackStoryComplete',[storyVersion])}}catch(_){}}
 const storyQuickItems=[{label:'封面',page:1,href:'index.html'},{label:'導覽',page:9},{label:'開場',page:2},{label:'一',page:3},{label:'二',page:10},{label:'三',page:15},{label:'四',page:20},{label:'五',page:27},{label:'總結',page:30},{label:'後記',page:33},{label:'收束',page:34}];
 function activeQuickPage(){
   if(current===1)return 1;
@@ -920,15 +925,15 @@ function activeQuickPage(){
   if(current===33)return 33;
   return 34;
 }
-function renderQuickMap(){const map=document.getElementById('storyQuickMap');if(!map)return;map.innerHTML=storyQuickItems.map(item=>item.href?`<a href="${item.href}" data-page="${item.page}" title="${item.label} ${String(item.page).padStart(2,'0')}">${item.label}</a>`:`<button type="button" data-page="${item.page}" title="${item.label} ${String(item.page).padStart(2,'0')}">${item.label}</button>`).join('');map.addEventListener('click',e=>{const b=e.target.closest('button[data-page]');if(!b)return;e.preventDefault();e.stopPropagation();goto(Number(b.dataset.page));})}
+function renderQuickMap(){const map=document.getElementById('storyQuickMap');if(!map)return;map.innerHTML=storyQuickItems.map(item=>item.href?`<a href="${item.href}" data-page="${item.page}" title="${item.label} ${String(item.page).padStart(2,'0')}">${item.label}</a>`:`<button type="button" data-page="${item.page}" title="${item.label} ${String(item.page).padStart(2,'0')}">${item.label}</button>`).join('');map.addEventListener('click',e=>{const b=e.target.closest('button[data-page]');if(!b)return;e.preventDefault();e.stopPropagation();goto(Number(b.dataset.page),'map');})}
 function updateQuickMap(){const active=activeQuickPage();document.querySelectorAll('#storyQuickMap [data-page]').forEach(b=>b.classList.toggle('active',Number(b.dataset.page)===active))}
-function goto(n){current=Math.max(1,Math.min(slides.length,n));slides.forEach((s,i)=>s.classList.toggle('active',i===current-1));progress.style.width=(current/slides.length*100)+'%';pageInfo.textContent=String(current).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');updateQuickMap()}
+function goto(n,navigationMethod){const previous=current;current=Math.max(1,Math.min(slides.length,n));slides.forEach((s,i)=>s.classList.toggle('active',i===current-1));progress.style.width=(current/slides.length*100)+'%';pageInfo.textContent=String(current).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');updateQuickMap();trackStoryState(previous,navigationMethod)}
 function deckFile(){return location.pathname.split('/').pop()||'story_slides.html'}
 function standaloneHref(href){if(!href||href.startsWith('#')||/^(https?:|mailto:|tel:)/i.test(href))return false;const file=(href.split(/[?#]/)[0].split('/').pop()||'');return /\.html$/i.test(file)&&!['index.html','slides.html','mobile.html','slides_4x3.html','slides_800x600.html','slides_1024x768.html','story_slides.html','story_slides_mobile.html','story_slides_800x600.html','story_slides_1024x768.html'].includes(file)}
 function attachBackParam(a){const href=a.getAttribute('href')||'';if(!standaloneHref(href))return;const u=new URL(href,location.href);u.searchParams.set('back',`${deckFile()}#${current}`);a.setAttribute('href',u.pathname.split('/').pop()+u.search+u.hash)}
-document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();goto(current+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();goto(current-1)}if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}});
-document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(a)attachBackParam(a);const jump=e.target.closest('[data-story-jump]');if(jump){e.preventDefault();e.stopPropagation();goto(Number(jump.dataset.storyJump));return}if(e.target.closest('a,button'))return;let x=e.clientX/window.innerWidth;if(x>.74)goto(current+1);if(x<.26)goto(current-1)});
+document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();goto(current+1,'keyboard')}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();goto(current-1,'keyboard')}if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}});
+document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(a)attachBackParam(a);const jump=e.target.closest('[data-story-jump]');if(jump){e.preventDefault();e.stopPropagation();goto(Number(jump.dataset.storyJump),'button');return}if(e.target.closest('a,button'))return;let x=e.clientX/window.innerWidth;if(x>.74)goto(current+1,'button');if(x<.26)goto(current-1,'button')});
 renderQuickMap();
-goto(Number((location.hash||'').replace(/\D/g,''))||1);
+goto(Number((location.hash||'').replace(/\D/g,''))||1,'direct');
 </script>
 </body></html>

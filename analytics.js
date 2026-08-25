@@ -30,4 +30,56 @@
   } catch (_) {
     // Analytics must never interrupt the reading experience.
   }
+
+  function trackEvent(eventName, parameters) {
+    try {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", eventName, parameters);
+      }
+    } catch (_) {
+      // Analytics must never interrupt the reading experience.
+    }
+  }
+
+  window.trackEntryVersion = function (version, entry_source) {
+    trackEvent("entry_version", {
+      version: version,
+      entry_source: entry_source
+    });
+  };
+
+  window.trackSlideView = function (slide_no, slide_name, version) {
+    trackEvent("slide_view", {
+      slide_no: slide_no,
+      slide_name: slide_name,
+      version: version
+    });
+  };
+
+  window.trackSlideNavigation = function (from_slide, to_slide, direction, navigation_method, version) {
+    trackEvent("slide_navigation", {
+      from_slide: from_slide,
+      to_slide: to_slide,
+      direction: direction,
+      navigation_method: navigation_method,
+      version: version
+    });
+  };
+
+  window.trackStoryComplete = function (version) {
+    trackEvent("story_complete", { version: version });
+  };
+
+  try {
+    var queuedCalls = window.cp813AnalyticsQueue || [];
+    window.cp813AnalyticsQueue = [];
+    queuedCalls.forEach(function (queuedCall) {
+      var method = window[queuedCall[0]];
+      if (typeof method === "function") {
+        method.apply(window, queuedCall[1]);
+      }
+    });
+  } catch (_) {
+    // Analytics must never interrupt the reading experience.
+  }
 }());
