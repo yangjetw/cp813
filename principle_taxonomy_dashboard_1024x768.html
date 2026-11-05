@@ -154,7 +154,7 @@ setActive('全部');
   else if (/(?:^|_)mobile\.html$/.test(deckFile)) version = 'mobile';
   else if (/_800x600\.html$/.test(deckFile)) version = '800';
   const method = 'trackInteractiveOpen';
-  const args = ['principle_taxonomy_dashboard', '上位分類與體系樹', sourceSlide, version];
+  const args = ['principle_taxonomy_dashboard', '憲法原則上位分類與體系樹', sourceSlide, version];
   try {
     if (typeof window[method] === 'function') window[method](...args);
     else (window.cp813AnalyticsQueue = window.cp813AnalyticsQueue || []).push([method, args]);

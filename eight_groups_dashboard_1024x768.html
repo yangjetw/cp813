@@ -112,7 +112,7 @@ body.projector-1024 .layerBox div{padding:12px}
   else if (/(?:^|_)mobile\.html$/.test(deckFile)) version = 'mobile';
   else if (/_800x600\.html$/.test(deckFile)) version = '800';
   const method = 'trackInteractiveOpen';
-  const args = ['eight_groups_dashboard', '8分群與人工覆核', sourceSlide, version];
+  const args = ['eight_groups_dashboard', '八分群與人工介入儀表板', sourceSlide, version];
   try {
     if (typeof window[method] === 'function') window[method](...args);
     else (window.cp813AnalyticsQueue = window.cp813AnalyticsQueue || []).push([method, args]);

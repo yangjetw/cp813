@@ -122,7 +122,7 @@ document.querySelectorAll("[data-step]").forEach((b,i)=>b.addEventListener("clic
   else if (/(?:^|_)mobile\.html$/.test(deckFile)) version = 'mobile';
   else if (/_800x600\.html$/.test(deckFile)) version = '800';
   const method = 'trackInteractiveOpen';
-  const args = ['method_dashboard', '文本轉資料流程', sourceSlide, version];
+  const args = ['method_dashboard', '方法流程儀表板', sourceSlide, version];
   try {
     if (typeof window[method] === 'function') window[method](...args);
     else (window.cp813AnalyticsQueue = window.cp813AnalyticsQueue || []).push([method, args]);

@@ -114,7 +114,7 @@ document.body.addEventListener('click',e=>{const b=e.target.closest('[data-focus
   else if (/(?:^|_)mobile\.html$/.test(deckFile)) version = 'mobile';
   else if (/_800x600\.html$/.test(deckFile)) version = '800';
   const method = 'trackInteractiveOpen';
-  const args = ['pi_direction_dashboard', 'PI值與合憲性判斷', sourceSlide, version];
+  const args = ['pi_direction_dashboard', 'PI 值與合憲性判斷方向', sourceSlide, version];
   try {
     if (typeof window[method] === 'function') window[method](...args);
     else (window.cp813AnalyticsQueue = window.cp813AnalyticsQueue || []).push([method, args]);

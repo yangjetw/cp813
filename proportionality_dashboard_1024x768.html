@@ -119,7 +119,7 @@ renderStoryIntro();renderKpis();renderProportionalityStory();renderEqualityStory
   else if (/(?:^|_)mobile\.html$/.test(deckFile)) version = 'mobile';
   else if (/_800x600\.html$/.test(deckFile)) version = '800';
   const method = 'trackInteractiveOpen';
-  const args = ['proportionality_dashboard', '比例原則變遷分析', sourceSlide, version];
+  const args = ['proportionality_dashboard', '比例原則變遷圖', sourceSlide, version];
   try {
     if (typeof window[method] === 'function') window[method](...args);
     else (window.cp813AnalyticsQueue = window.cp813AnalyticsQueue || []).push([method, args]);

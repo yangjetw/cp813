@@ -114,7 +114,7 @@ document.body.addEventListener('click',e=>{let f=e.target.closest('[data-first]'
   else if (/(?:^|_)mobile\.html$/.test(deckFile)) version = 'mobile';
   else if (/_800x600\.html$/.test(deckFile)) version = '800';
   const method = 'trackInteractiveOpen';
-  const args = ['first_appearance_dashboard', '憲法原則首現年份', sourceSlide, version];
+  const args = ['first_appearance_dashboard', '各憲法原則時序變化', sourceSlide, version];
   try {
     if (typeof window[method] === 'function') window[method](...args);
     else (window.cp813AnalyticsQueue = window.cp813AnalyticsQueue || []).push([method, args]);

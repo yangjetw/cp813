@@ -119,7 +119,7 @@ if(window.Plotly){const hover={bgcolor:"#fffaf0",bordercolor:"#3e352c",font:{col
   else if (/(?:^|_)mobile\.html$/.test(deckFile)) version = 'mobile';
   else if (/_800x600\.html$/.test(deckFile)) version = '800';
   const method = 'trackInteractiveOpen';
-  const args = ['labeling_dashboard', '合憲性標註', sourceSlide, version];
+  const args = ['labeling_dashboard', '合憲性標註與方向判斷儀表板', sourceSlide, version];
   try {
     if (typeof window[method] === 'function') window[method](...args);
     else (window.cp813AnalyticsQueue = window.cp813AnalyticsQueue || []).push([method, args]);

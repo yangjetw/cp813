@@ -113,7 +113,7 @@ document.body.addEventListener('click',e=>{let g=e.target.closest('[data-group]'
   else if (/(?:^|_)mobile\.html$/.test(deckFile)) version = 'mobile';
   else if (/_800x600\.html$/.test(deckFile)) version = '800';
   const method = 'trackInteractiveOpen';
-  const args = ['principle_group_dashboard', '使用型態分群', sourceSlide, version];
+  const args = ['principle_group_dashboard', '憲法原則使用型態分群', sourceSlide, version];
   try {
     if (typeof window[method] === 'function') window[method](...args);
     else (window.cp813AnalyticsQueue = window.cp813AnalyticsQueue || []).push([method, args]);

@@ -118,7 +118,7 @@ document.querySelectorAll('#citation-query select').forEach(el=>el.addEventListe
   else if (/(?:^|_)mobile\.html$/.test(deckFile)) version = 'mobile';
   else if (/_800x600\.html$/.test(deckFile)) version = '800';
   const method = 'trackInteractiveOpen';
-  const args = ['principles_explorer', '30項憲法原則探索與引用', sourceSlide, version];
+  const args = ['principles_explorer', '憲法原則探索器', sourceSlide, version];
   try {
     if (typeof window[method] === 'function') window[method](...args);
     else (window.cp813AnalyticsQueue = window.cp813AnalyticsQueue || []).push([method, args]);
